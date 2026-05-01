@@ -1,0 +1,8 @@
+### Reporte de Ventas por Rango
+@host = http://localhost:8080
+GET {{host}}/api/reportes/ventas?inicio=2024-01-01&fin=2024-12-31
+Authorization: Bearer {{auth_token}}
+
+### Reporte de Stock Crítico (Alerta)
+GET {{host}}/api/reportes/stock-critico
+Authorization: Bearer {{auth_token}}

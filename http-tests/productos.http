@@ -1,0 +1,57 @@
+### Listar Marcas
+@host = http://localhost:8080
+GET {{host}}/api/marcas
+Authorization: Bearer {{auth_token}}
+
+### Listar Categorías
+GET {{host}}/api/categorias
+Authorization: Bearer {{auth_token}}
+
+### Crear Producto (Smartphone)
+POST {{host}}/api/productos
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "sku": "SAMSUNG-S24-ULTRA",
+  "nombre": "Samsung Galaxy S24 Ultra",
+  "marcaId": 1,
+  "categoriaId": 1,
+  "modelo": "S24 Ultra",
+  "color": "Titanium Gray",
+  "capacidad": "512GB",
+  "precioCompra": 3500.00,
+  "precioVenta": 4800.00,
+  "stockInicial": 10,
+  "stockMinimo": 2
+}
+
+### Listar Productos con Filtros
+GET {{host}}/api/productos?marcaId=1&modelo=S24
+Authorization: Bearer {{auth_token}}
+
+### Obtener Producto por ID
+GET {{host}}/api/productos/1
+Authorization: Bearer {{auth_token}}
+
+### Actualizar Producto
+PUT {{host}}/api/productos/1
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "sku": "SAMSUNG-S24-ULTRA-EDIT",
+  "nombre": "Samsung Galaxy S24 Ultra Editado",
+  "marcaId": 1,
+  "categoriaId": 1,
+  "modelo": "S24 Ultra",
+  "color": "Negro",
+  "capacidad": "512GB",
+  "precioCompra": 3500.00,
+  "precioVenta": 4900.00,
+  "stockMinimo": 3
+}
+
+### Desactivar Producto (Baja Lógica)
+DELETE {{host}}/api/productos/4
+Authorization: Bearer {{auth_token}}

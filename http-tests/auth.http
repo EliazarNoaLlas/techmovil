@@ -1,0 +1,15 @@
+### Autenticación - Login
+@host = http://localhost:8080
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin125"
+}
+
+> {% client.global.set("auth_token", response.body.datos.token); %}
+
+### Autenticación - Logout (Opcional)
+POST {{host}}/api/auth/logout
+Authorization: Bearer {{auth_token}}

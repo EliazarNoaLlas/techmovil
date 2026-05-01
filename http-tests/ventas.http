@@ -1,0 +1,39 @@
+### Registrar Venta (Boleta)
+@host = http://localhost:8080
+POST {{host}}/api/ventas
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "clienteNombre": "Carlos Sanchez",
+  "clienteDocumento": "70123456",
+  "usuarioId": 1,
+  "tipoComprobante": "BOLETA",
+  "detalles": [
+    {
+      "productoId": 6,
+      "cantidad": 1,
+      "precioUnitario": 4800.00
+    }
+  ]
+}
+
+### Registrar Venta de Múltiples Items
+
+POST {{host}}/api/ventas
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "clienteNombre": "Empresa SAC",
+  "clienteDocumento": "20601234567",
+  "usuarioId": 1,
+  "tipoComprobante": "FACTURA",
+  "detalles": [
+    {
+      "productoId": 1,
+      "cantidad": 2,
+      "precioUnitario": 4800.00
+    }
+  ]
+}

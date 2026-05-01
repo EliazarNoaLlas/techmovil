@@ -1,0 +1,39 @@
+### Registrar Entrada de Stock (Compra)
+@host = http://localhost:8080
+POST {{host}}/api/inventario/movimientos
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "tipoMovimiento": "ENTRADA",
+  "motivo": "COMPRA A PROVEEDOR",
+  "documentoReferencia": "FAC-001",
+  "almacenDestinoId": 1,
+  "usuarioId": 1,
+  "detalles": [
+    {
+      "productoId": 1,
+      "cantidad": 20,
+      "costoUnitario": 3400.00
+    }
+  ]
+}
+
+### Registrar Salida de Stock (Ajuste)
+POST {{host}}/api/inventario/movimientos
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "tipoMovimiento": "SALIDA",
+  "motivo": "PRODUCTO DAÑADO EN EXHIBICIÓN",
+  "almacenOrigenId": 1,
+  "usuarioId": 1,
+  "detalles": [
+    {
+      "productoId": 1,
+      "cantidad": 1,
+      "costoUnitario": 3400.00
+    }
+  ]
+}
