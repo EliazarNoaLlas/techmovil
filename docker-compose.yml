@@ -1,0 +1,33 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: techmovil-db
+    restart: always
+    environment:
+      MYSQL_DATABASE: techmovil_db
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_USER: techmovil_user
+      MYSQL_PASSWORD: techmovil_password
+    ports:
+      - "3307:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  app:
+    build: .
+    container_name: techmovil-app
+    ports:
+      - "8081:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/techmovil_db?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=techmovil_user
+      - SPRING_DATASOURCE_PASSWORD=techmovil_password
+      - APP_JWT_SECRET=techmovil-super-secret-key-for-production-purposes
+      - APP_JWT_EXPIRATION_MS=86400000
+      - APP_IGV_PORCENTAJE=18.00
