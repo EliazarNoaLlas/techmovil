@@ -140,9 +140,9 @@ cd techmovil-backend/techmovil
 Crear la base de datos en MySQL:
 
 ```sql
-CREATE DATABASE techmovil CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE techmovil_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 CREATE USER 'techmovil_user'@'localhost' IDENTIFIED BY 'techmovil_pass';
-GRANT ALL PRIVILEGES ON techmovil.* TO 'techmovil_user'@'localhost';
+GRANT ALL PRIVILEGES ON techmovil_db.* TO 'techmovil_user'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
@@ -152,9 +152,9 @@ Crear archivo `src/main/resources/application-dev.properties`:
 
 ```properties
 # Base de Datos
-spring.datasource.url=jdbc:mysql://localhost:3306/techmovil?useSSL=false&serverTimezone=America/Lima
-spring.datasource.username=techmovil_user
-spring.datasource.password=techmovil_pass
+spring.datasource.url=jdbc:mysql://localhost:3306/techmovil_db
+spring.datasource.username=root
+spring.datasource.password=12345678
 
 # JWT
 app.jwt.secret=clave-secreta-de-al-menos-256-bits-para-firmar-tokens-jwt-1234567890

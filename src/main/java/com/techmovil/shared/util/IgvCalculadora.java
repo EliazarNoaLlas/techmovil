@@ -29,16 +29,14 @@ public final class IgvCalculadora {
     }
 
     /** Métodos compatibles con la implementación de productos */
-    public static BigDecimal calcularMontoIgv(BigDecimal precio, boolean incluyeIgv) {
-        if (incluyeIgv) {
-            BigDecimal base = extraerBase(precio);
-            return precio.subtract(base);
-        }
+    public static BigDecimal calcularMontoIgv(BigDecimal precio, boolean aplicaIgv) {
+        if (!aplicaIgv || precio == null) return BigDecimal.ZERO;
         return calcularIgv(precio);
     }
 
-    public static BigDecimal calcularMontoTotalConIgv(BigDecimal precio, boolean incluyeIgv) {
-        if (incluyeIgv) return precio;
+    public static BigDecimal calcularMontoTotalConIgv(BigDecimal precio, boolean aplicaIgv) {
+        if (precio == null) return BigDecimal.ZERO;
+        if (!aplicaIgv) return precio.setScale(2, RoundingMode.HALF_UP);
         return calcularTotal(precio);
     }
 }

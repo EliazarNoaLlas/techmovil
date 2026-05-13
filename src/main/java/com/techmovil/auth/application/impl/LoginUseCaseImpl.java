@@ -29,7 +29,7 @@ public class LoginUseCaseImpl implements LoginUseCase {
     @Transactional
     public LoginResponseDto ejecutar(LoginRequestDto request) {
         Usuario usuario = usuarioRepository.buscarPorUsername(request.username())
-                .orElseThrow(() -> new ReglaDeNegocioException("Credenciales incorrectas"));
+                .orElseThrow(() -> new BadCredentialsException("Credenciales incorrectas"));
 
         if (usuario.estaBloqueado()) {
             throw new ReglaDeNegocioException("Usuario bloqueado por múltiples intentos fallidos");
@@ -56,7 +56,7 @@ public class LoginUseCaseImpl implements LoginUseCase {
         } catch (BadCredentialsException e) {
             usuario.registrarIntentoFallido();
             usuarioRepository.guardar(usuario);
-            throw new ReglaDeNegocioException("Credenciales incorrectas");
+            throw new BadCredentialsException("Credenciales incorrectas");
         }
     }
 }

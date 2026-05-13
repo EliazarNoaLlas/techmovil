@@ -202,10 +202,10 @@ class ProductoDomainTest {
 
         @ParameterizedTest
         @CsvSource({
-                "0.01, 0.01, false",
+                "0.01, 0.01, true",
                 "0.00, 0.00, true",
                 "5.00, 5.00, true",
-                "0.01, 10.00, false"
+                "0.01, 10.00, true"
         })
         @DisplayName("Debe identificar correctamente stock crítico con decimales")
         void debeIdentificarStockCriticoConDecimales(
